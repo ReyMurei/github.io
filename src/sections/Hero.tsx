@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { Button } from './components/ui/button';
+import { Button } from '../components/ui/button';
 import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
 
 export default function Hero() {
