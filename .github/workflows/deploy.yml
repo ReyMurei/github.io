@@ -28,10 +28,10 @@ jobs:
       - name: Build project
         run: npm run build
       
-      - name: Upload build artifacts
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: ./dist  # ← This uploads the CONTENTS of dist
 
   deploy:
     environment:
