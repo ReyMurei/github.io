@@ -4,6 +4,7 @@ import Hero from './sections/Hero';
 import About from './sections/About';
 import Projects from './sections/Projects';
 import Skills from './sections/Skills';
+import Blog from './sections/Blog';  // Import the Blog section
 import Contact from './sections/Contact';
 import Footer from './sections/Footer';
 import './App.css';
@@ -17,6 +18,7 @@ function App() {
         <About />
         <Projects />
         <Skills />
+        <Blog />        {/* Add Blog section */}
         <Contact />
       </main>
       <Footer />
