@@ -136,23 +136,6 @@ export default function Skills() {
             ))}
           </div>
         </div>
-
-        {/* Certifications */}
-        <div className="mt-20 grid md:grid-cols-3 gap-6">
-          <div className="p-6 rounded-2xl bg-gradient-to-br from-emerald-600/10 to-transparent border border-emerald-500/20 text-center">
-            <div className="text-3xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent mb-2">Google</div>
-            <div className="text-sm text-muted-foreground">Data Analytics Certificate</div>
-          </div>
-          <div className="p-6 rounded-2xl bg-gradient-to-br from-cyan-600/10 to-transparent border border-cyan-500/20 text-center">
-            <div className="text-3xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent mb-2">Tableau</div>
-            <div className="text-sm text-muted-foreground">Desktop Specialist</div>
-          </div>
-          <div className="p-6 rounded-2xl bg-gradient-to-br from-teal-600/10 to-transparent border border-teal-500/20 text-center">
-            <div className="text-3xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent mb-2">Microsoft</div>
-            <div className="text-sm text-muted-foreground">Power BI Data Analyst</div>
-          </div>
-        </div>
-      </div>
     </section>
   );
 }
