@@ -81,7 +81,7 @@ export default function About() {
             <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">actionable insights</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            I'm a data analyst passionate about uncovering patterns, optimizing processes, 
+            I'm a data analyst who uncovering patterns, optimizing processes, 
             and driving data-informed decisions that create real business value.
           </p>
         </div>
