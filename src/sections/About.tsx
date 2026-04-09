@@ -5,6 +5,7 @@ const stats = [
   { label: 'Years Experience', value: 2 },
   { label: 'Datasets Analyzed', value: 10 },
   { label: 'Insights Delivered', value: 10 },
+  { label: 'Clients/Organizations Served', value: 4 },
 ];
 
 const services = [
@@ -127,7 +128,7 @@ export default function About() {
               <h3 className="text-2xl md:text-3xl font-bold mb-6">My Analytical Journey</h3>
               <p className="text-muted-foreground leading-relaxed mb-4">
                 With over 2 years of experience in data analytics, I've helped organizations 
-                within Non- profit NGOs unlock the power of their data.
+                within Non- profits to unlock the power of their data.
               </p>
               <p className="text-muted-foreground leading-relaxed mb-4">
                 My expertise spans SQL, Python, R, Tableau, and Power BI. I specialize in 
