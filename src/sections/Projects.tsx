@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ExternalLink, Github, ArrowLeft, X } from 'lucide-react';
+import { ExternalLink, Github, ArrowLeft } from 'lucide-react';
 
 const projects = [
   {
@@ -37,11 +37,44 @@ export default function Projects() {
   const [activeCategory, setActiveCategory] = useState('All');
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
 
+  // Handle URL hash changes and initial load
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      const match = hash.match(/#projects\/(\d+)/);
+      if (match) {
+        const projectId = parseInt(match[1]);
+        const project = projects.find(p => p.id === projectId);
+        if (project) {
+          setSelectedProject(project);
+        }
+      } else if (hash === '#projects') {
+        setSelectedProject(null);
+      }
+    };
+
+    // Check on mount
+    handleHashChange();
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  // Update URL when project changes
+  useEffect(() => {
+    if (selectedProject) {
+      window.location.hash = `#projects/${selectedProject.id}`;
+    } else if (window.location.hash.includes('/')) {
+      // Only reset to #projects if we're in a project detail
+      window.location.hash = '#projects';
+    }
+  }, [selectedProject]);
+
   // Lock body scroll when project is open
   useEffect(() => {
     if (selectedProject) {
       document.body.style.overflow = 'hidden';
-      window.scrollTo({ top: 0, behavior: 'instant' });
     } else {
       document.body.style.overflow = '';
     }
@@ -61,10 +94,10 @@ export default function Projects() {
 
   return (
     <>
-      {/* FULL PAGE OVERLAY - Fixed position, escapes all parents */}
+      {/* FULL PAGE OVERLAY */}
       {selectedProject && (
         <div className="fixed inset-0 z-[9999] bg-background overflow-y-auto">
-          {/* Close/Back Button - Fixed at top */}
+          {/* Close/Back Button */}
           <div className="fixed top-4 left-4 z-50">
             <Button 
               variant="outline"
@@ -79,17 +112,18 @@ export default function Projects() {
 
           {/* Full Page Content */}
           <div className="min-h-screen">
-            {/* Hero Image - Full viewport width, no padding */}
-            <div className="relative h-screen w-full overflow-hidden">
+            {/* Hero Image - Clean, no bottom fade */}
+            <div className="relative h-[70vh] w-full overflow-hidden">
               <img 
                 src={selectedProject.image} 
                 alt={selectedProject.title}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/20" />
+              {/* Only top gradient for text readability, no bottom fade */}
+              <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-transparent to-transparent" />
               
-              {/* Title overlay at bottom of hero */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-12 lg:p-16">
+              {/* Title overlay */}
+              <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 p-6 md:p-12 lg:p-16">
                 <div className="max-w-5xl mx-auto">
                   <div className="flex flex-wrap gap-2 mb-4">
                     {selectedProject.featured && (
@@ -99,23 +133,23 @@ export default function Projects() {
                       <Badge 
                         key={tag} 
                         variant="secondary"
-                        className="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-sm px-3 py-1"
+                        className="bg-black/50 text-white border border-white/30 text-sm px-3 py-1 backdrop-blur"
                       >
                         {tag}
                       </Badge>
                     ))}
                   </div>
-                  <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight">
+                  <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
                     {selectedProject.title}
                   </h1>
-                  <p className="text-xl md:text-2xl text-white/90 max-w-3xl leading-relaxed">
+                  <p className="text-xl md:text-2xl text-white max-w-3xl leading-relaxed drop-shadow-md">
                     {selectedProject.description}
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Content Section - Full width */}
+            {/* Content Section */}
             <div className="bg-background">
               <div className="max-w-5xl mx-auto px-6 md:px-12 py-16 md:py-24">
                 {/* Action Buttons */}
@@ -150,7 +184,7 @@ export default function Projects() {
         </div>
       )}
 
-      {/* GRID VIEW - Normal section (always rendered underneath) */}
+      {/* GRID VIEW */}
       <section id="projects" className="py-24 px-4 relative">
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent" />
 
