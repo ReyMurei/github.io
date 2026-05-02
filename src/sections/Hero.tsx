@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowDown, Github, Linkedin, Mail, Database } from 'lucide-react';
+import { ArrowDown, Github, Linkedin, Mail, Database, Youtube } from 'lucide-react';
 
 export default function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -149,6 +149,14 @@ export default function Hero() {
             className="p-3 rounded-full bg-secondary/50 hover:bg-emerald-500/20 transition-colors group"
           >
             <Linkedin className="w-5 h-5 text-muted-foreground group-hover:text-emerald-400 transition-colors" />
+          </a>
+          <a
+            href="https://youtube.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-3 rounded-full bg-secondary/50 hover:bg-emerald-500/20 transition-colors group"
+          >
+            <Youtube className="w-5 h-5 text-muted-foreground group-hover:text-emerald-400 transition-colors" />
           </a>
           <a
             href="mailto:your.email@example.com"
